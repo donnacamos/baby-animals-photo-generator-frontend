@@ -2,14 +2,25 @@
 body {
     text-align: center; 
     height: 100%;
+    font-family:Arial;
+    background-color: rgb(195, 250, 243);
 }
 
+h1 {
+  color:#14396a;
+}
 
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  }
+
+  img.rounded-corners {
+
+    border-radius: 30px;
+  
   }
 
   .myButton {
@@ -38,3 +49,27 @@ body {
     top:1px;
   }
   
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+  }
+  
+  a:hover {
+    background-color: #30b4d4;
+    color: #14396a;
+  }
+  
+  .previous {
+    background-color: #63b8ee;
+    color: #14396a;
+  }
+  
+  .next {
+    background-color: #63b8ee;
+    color: #14396a;
+  }
+  
+  .round {
+    border-radius: 50%;
+  }
