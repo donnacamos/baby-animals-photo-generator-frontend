@@ -19,12 +19,10 @@ h1 {
     width: 50%;
   }
 
-  /* img.rounded-corners {
+  img.thumb {
+    border-radius: 30px; 
+  }
 
-    border-radius: 30px;
-  
-  } */
-/* 
   .myButton {
     box-shadow:inset 0px 1px 0px 0px #bee2f9;
     background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
@@ -49,7 +47,7 @@ h1 {
   .myButton:active {
     position:relative;
     top:1px;
-  } */
+  }
   
   
   
