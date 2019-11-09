@@ -117,88 +117,29 @@
 //         showImages(allTheImages) 
 //     }
 
-// IMAGE SLIDES & CIRCLES ARRAYS, & COUNTER
-var imageSlides = document.getElementsByClassName('imageSlides');
-var circles = document.getElementsByClassName('circle');
-var leftArrow = document.getElementById('leftArrow');
-var rightArrow = document.getElementById('rightArrow');
-var counter = 0;
+(function(){
 
-// HIDE ALL IMAGES FUNCTION
-function hideImages() {
-  for (var i = 0; i < imageSlides.length; i++) {
-    imageSlides[i].classList.remove('visible');
-  }
-}
-
-// REMOVE ALL DOTS FUNCTION
-function removeDots() {
-  for (var i = 0; i < imageSlides.length; i++) {
-    circles[i].classList.remove('dot');
-  }
-}
-
-// SINGLE IMAGE LOOP/CIRCLES FUNCTION
-function imageLoop() {
-  var currentImage = imageSlides[counter];
-  var currentDot = circles[counter];
-  currentImage.classList.add('visible');
-  removeDots();
-  currentDot.classList.add('dot');
-  counter++;
-}
-
-// LEFT & RIGHT ARROW FUNCTION & CLICK EVENT LISTENERS
-function arrowClick(e) {
-  var target = e.target;
-  if (target == leftArrow) {
-    clearInterval(imageSlideshowInterval);
-    hideImages();
-    removeDots();
-    if (counter == 1) {
-      counter = (imageSlides.length - 1);
-      imageLoop();
-      imageSlideshowInterval = setInterval(slideshow, 10000);
-    } else {
-      counter--;
-      counter--;
-      imageLoop();
-      imageSlideshowInterval = setInterval(slideshow, 10000);
+    function Photo(name, src) {
+        this.name = name;
+        this.src = src;
+            this.create = function(){
+                let container = document.getElementById('thumbs_container');
+                let img = document.createElement('img');
+                img.src = this.src;
+                img.alt = this.name;
+                img.className = 'thumb';
+                img.style.width = '400px';
+                container.appendChild(img);
+            }
     }
-  } 
-  else if (target == rightArrow) {
-    clearInterval(imageSlideshowInterval);
-    hideImages();
-    removeDots();
-    if (counter == imageSlides.length) {
-      counter = 0;
-      imageLoop();
-      imageSlideshowInterval = setInterval(slideshow, 10000);
-    } else {
-      imageLoop();
-      imageSlideshowInterval = setInterval(slideshow, 10000);
-    }
-  }
-}
 
-leftArrow.addEventListener('click', arrowClick);
-rightArrow.addEventListener('click', arrowClick);
+    const photo1 = new Photo('Elephant', 'https://images.unsplash.com/photo-1449104532935-d9209c70e2b6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9')
+
+    photo1.create();
+})(); 
 
 
-// IMAGE SLIDE FUNCTION
-function slideshow() {
-  if (counter < imageSlides.length) {
-    imageLoop();
-  } else {
-    counter = 0;
-    hideImages();
-    imageLoop();
-  }
-}
 
-// SHOW FIRST IMAGE, & THEN SET & CALL SLIDE INTERVAL
-setTimeout(slideshow, 1000);
-var imageSlideshowInterval = setInterval(slideshow, 10000);
 
 
 
