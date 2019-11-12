@@ -1,31 +1,4 @@
-// PhotosAdapter file 
-// class PhotosAdapter {
-//     constructor() {
-//         this.baseUrl = 'http://localhost:3000/photos' 
-//     }
 
-//     getPhotos() {
-//         return fetch(this.baseUrl).then(res => res.json()
-//         )
-//     }
-
-//     createPhoto(value) {
-//         const note = {
-//             body: value 
-//         }
-    
-
-//         return fetch(this.baseUrl, {
-//             method: 'POST',
-//             headers: {
-//                 'content-type' : 'application/json'
-//             },
-//             imageUrl: JSON.stringify({photo }).then(res => res.json())  
-//         })
-//     }
-// }
-
-// End PhotosAdapter File 
 // app.js file 
 // class App {
 //     constructor() {
@@ -108,7 +81,14 @@
 // new PhotosAdapter().getPhotos().then(console.log) 
 
 // end index.js file 
+fetch("/photos/1")
+    .then(response => response.json())
+    .then(photoJSON => renderThePhoto(photoJSON)) 
 
+function renderThePhoto(photoJSON){
+    newPhoto = new Photo(photoJSON)
+    document.getElementById("thumbs-container").innerHTML = newPhoto.renderShow()
+}
 // function getImageUrl() {
 //     return fetch('http://localhost:3001/photos')
 //     .then(res => res.json()) 
