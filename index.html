@@ -9,17 +9,25 @@
 </head>
 <body>
     <h1>Baby Animal Photo Slideshow</h1>
-    <div id="thumbs_container" class="center rounded-corners">
-        <img src="https://images.unsplash.com/photo-1449104532935-d9209c70e2b6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9" alt="baby elephant"
-        height="400px" width="500px" class="thumb"/>
-    </div>
+    <div id="thumbs_container" class="center rounded-corners"></div>
+    <div id="artist_container"></div>
         <a href="#" class="myButton" id="previous">&#8249;</a>
         <a href="#" class="myButton" id="play">&#x25ba;</a>
         <a href="#" class="myButton" id="pause">&#x2016;</a>
         <a href="#" class="myButton" id="stop">&#9724;</a> 
         <a href="#" class="myButton" id="next">&#8250;</a>
-    <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="Adapter.js"></script>
+        <br> 
+        <form action="#" id="user">
+            Name: <input type="text" name="username">
+            <input type="submit">
+        </form>
+        <br>
+        <textarea rows="4" cols="50" name="comment" form="user_form">
+            Enter comment here...
+        </textarea>
+    <script type="text/javascript" src="JS/index.js"></script>
+    <script type="text/javascript" src="JS/Adapter.js"></script>
+    <script type="text/javascript" src="JS/artist.js"></script>
 </body>
 
 

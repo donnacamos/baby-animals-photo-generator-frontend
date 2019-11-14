@@ -81,9 +81,9 @@
 // new PhotosAdapter().getPhotos().then(console.log) 
 
 // end index.js file 
-fetch("/photos/1")
+fetch("http://localhost:3001/api/v1/photos/1")
     .then(response => response.json())
-    .then(photoJSON => renderThePhoto(photoJSON)) 
+    .then(photoJSON => console.log(photoJSON)) 
 
 function renderThePhoto(photoJSON){
     newPhoto = new Photo(photoJSON)
@@ -97,30 +97,56 @@ function renderThePhoto(photoJSON){
 //         showImages(allTheImages) 
 //     }
 
-(function(){
 
-    function Photo(name, src) {
-        this.name = name;
+
+    class Photo {
+        constructor(name, src) {
+        this.name = name; 
         this.src = src;
-            this.create = function(){
+        }
+            createPhoto = function(){
                 let container = document.getElementById('thumbs_container');
-                let img = document.createElement('img');
+                let img = document.createElement('img'); 
                 img.src = this.src;
-                img.alt = this.name;
+                img.alt = this.name; 
                 img.className = 'thumb';
+                img.id = 'photo';
+                img.style.height = '300px';
                 img.style.width = '400px';
                 container.appendChild(img);
             }
+
+            removePhoto = function(){
+                document.getElementById('photo').remove();
+            }
     }
 
-    const photo1 = new Photo('Elephant', 'https://images.unsplash.com/photo-1449104532935-d9209c70e2b6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9')
+  
+    // class Artist {
+    //     constructor(firstName, lastName) {
+    //         this.firstName = firstName;
+    //         this.lastName = lastName;
+    //         this.create = function(){
+                  
+    //         }
+    //     }
+    // }
+  //  const animalPhotos = new Array(); 
+    const photo1 = new Photo('Elephant', 'https://images.unsplash.com/photo-1449104532935-d9209c70e2b6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9', 'David Clode'); 
+    const photo2 = new Photo('Kitten', 'https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9', 'Andrii Podilnyk');
+    const photo3 = new Photo('Puppy', 'https://images.unsplash.com/photo-1546527868-ccb7ee7dfa6a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9', 'Hannah Grace');
 
-    photo1.create();
-})(); 
+    photo1.createPhoto();
+    // photo2.create();
+    // photo3.create();
 
-
-
-
+   const nextButton =  document.getElementById('next');
+   console.log(nextButton);
+   nextButton.addEventListener("click", function(){
+       photo1.removePhoto();
+       photo2.createPhoto(); 
+       // add next photo 
+   });
 
 
 

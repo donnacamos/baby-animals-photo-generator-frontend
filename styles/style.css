@@ -39,6 +39,7 @@ h1 {
     text-decoration:none;
     text-shadow:0px 1px 0px #7cacde;
     margin-top: 25px;
+    margin-bottom: 25px; 
   }
   .myButton:hover {
     background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
