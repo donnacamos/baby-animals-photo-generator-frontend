@@ -12,6 +12,50 @@ h1 {
   color:#14396a;
 }
 
+.dropbtn {
+  background-color: #63b8ee;
+  color: #14396a;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial; 
+  border: none;
+  margin-bottom: 25px; 
+  border-radius: 6px; 
+  border:1px solid #3866a3;
+  box-shadow:inset 0px 1px 0px 0px #bee2f9;
+  background:linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-weight: bold;
+  font-family: Arial; 
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block; 
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e95ca}
+
 .center {
     display: block;
     margin-left: auto;
