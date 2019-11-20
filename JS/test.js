@@ -19,8 +19,8 @@ function fetchPhotos(){
     .then(photoJSON => {
         photoJSON.data.forEach(photo => {
           let newPhoto = new Photo(photo)
-
-          let photoHtml = newPhoto.formatIndex()
+        
+          newPhoto.formatIndex()
         })
     })
 }
@@ -36,9 +36,12 @@ class Photo {
 
     Photo.prototype.formatIndex = function(){
         let photoHtml = `
-        <a href="/photos/${this.id}"><img src="${this.imageUrl}" alt=""></a>
+        <a href="/photos/${this.imageUrl.id}"><img src="${this.imageUrl.attributes.image_url}" alt=""></a>
         `
+        let workingPhoto = document.createElement("img")
+        workingPhoto.src = this.imageUrl.attributes.image_url 
+        document.querySelector("#main").append(workingPhoto) 
         //return photoHtml 
-        return console.log("Hello, baby elephant!")
+        // return console.log("Hello, baby elephant!")
     
 }
