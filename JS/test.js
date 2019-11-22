@@ -1,5 +1,5 @@
 // global variable declarations 
-let allPhotos = [] 
+
 
 // wait for the DOM to load 
 document.addEventListener("DOMContentLoaded", init);
@@ -35,13 +35,25 @@ class Photo {
 }
 
     Photo.prototype.formatIndex = function(){
-        let photoHtml = `
-        <a href="/photos/${this.imageUrl.id}"><img src="${this.imageUrl.attributes.image_url}" alt=""></a>
-        `
+        
         let workingPhoto = document.createElement("img")
         workingPhoto.src = this.imageUrl.attributes.image_url 
         document.querySelector("#main").append(workingPhoto) 
-        //return photoHtml 
-        // return console.log("Hello, baby elephant!")
+        let allPhotos = [];
+        let obj = {}
+        obj["01"] = workingPhoto.image_url;
+        obj["02"] = workingPhoto.artist_name; 
+        allPhotos.push(obj); 
+        let counter = 0; 
+        let mainDiv = document.getElementById('main')
+
+        function nextPhoto() {
+          mainDiv.innerHTML = allPhotos[counter % allPhotos.length];
+          counter += 1;
+          debugger
+        }
+        setInterval(nextPhoto, 3000);
+        
+    
     
 }
