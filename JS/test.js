@@ -1,5 +1,6 @@
 // global variable declarations 
-
+const allPhotos = [];
+let counter = 0;
 
 // wait for the DOM to load 
 document.addEventListener("DOMContentLoaded", init);
@@ -18,42 +19,34 @@ function fetchPhotos(){
     .then(response => response.json())
     .then(photoJSON => {
         photoJSON.data.forEach(photo => {
-          let newPhoto = new Photo(photo)
-        
-          newPhoto.formatIndex()
+          const attributes = photo.attributes;
+          let newPhoto = new Photo(attributes.image_url, attributes.artist_name, photo.id);
+          allPhotos.push(newPhoto);
         })
     })
+    .then(() => {
+      let mainDiv = document.getElementById('main');
+      mainDiv.innerHTML = allPhotos[0].render();
+      setInterval(nextPhoto, 3000);
+    });
+}
+
+function nextPhoto() {
+  let mainDiv = document.getElementById('main');
+  mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render();
+  counter += 1;
 }
 
 class Photo {
     constructor(imageUrl, artistName, id) {
-        this.imageUrl = imageUrl 
-        this.artistName = artistName
-        this.id = id
+      this.imageUrl = imageUrl
+      this.artistName = artistName
+      this.id = id
     }
-
 }
 
-    Photo.prototype.formatIndex = function(){
-        
-        let workingPhoto = document.createElement("img")
-        workingPhoto.src = this.imageUrl.attributes.image_url 
-        document.querySelector("#main").append(workingPhoto) 
-        let allPhotos = [];
-        let obj = {}
-        obj["01"] = workingPhoto.image_url;
-        obj["02"] = workingPhoto.artist_name; 
-        allPhotos.push(obj); 
-        let counter = 0; 
-        let mainDiv = document.getElementById('main')
-
-        function nextPhoto() {
-          mainDiv.innerHTML = allPhotos[counter % allPhotos.length];
-          counter += 1;
-          debugger
-        }
-        setInterval(nextPhoto, 3000);
-        
-    
-    
-}
+Photo.prototype.render = function () {
+    return `
+      <img src="${this.imageUrl}"/> 
+    `
+};
