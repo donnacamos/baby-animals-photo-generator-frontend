@@ -1,12 +1,12 @@
 // global variable declarations 
-
+let allPhotos = [];
 
 // wait for the DOM to load 
 document.addEventListener("DOMContentLoaded", init);
-  console.log("Hello, World!")
+  
 function init(){
     // these are the things that need to happen when the page loads 
-    fetchPhotos(console.log("hello, baby animals!"))
+    fetchPhotos()
 }
 
 // send a fetch request to get the photos from the back end 
@@ -18,12 +18,22 @@ function fetchPhotos(){
     .then(response => response.json())
     .then(photoJSON => {
         photoJSON.data.forEach(photo => {
-          let newPhoto = new Photo(photo)
-        
-          newPhoto.formatIndex()
+          const attributes = photo.attributes;
+          let newPhoto = new Photo(attributes.image_url, attributes.artist_name, photo.id);
+          allPhotos.push(newPhoto);
         })
     })
+    .then(() => {
+      let counter = 0
+      function nextPhoto() {
+        let mainDiv = document.getElementById('main');
+        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render();
+        counter += 1; 
+      }
+      setInterval(nextPhoto, 3000);
+    });
 }
+
 
 class Photo {
     constructor(imageUrl, artistName, id) {
@@ -34,26 +44,32 @@ class Photo {
 
 }
 
-    Photo.prototype.formatIndex = function(){
-        
-        let workingPhoto = document.createElement("img")
-        workingPhoto.src = this.imageUrl.attributes.image_url 
-        document.querySelector("#main").append(workingPhoto) 
-        let allPhotos = [];
-        let obj = {}
-        obj["01"] = workingPhoto.image_url;
-        obj["02"] = workingPhoto.artist_name; 
-        allPhotos.push(obj); 
-        let counter = 0; 
-        let mainDiv = document.getElementById('main')
+Photo.prototype.render = function () {
+  return `
+    <img src="${this.imageUrl}"/>
+    <p>photo credit: ${this.artistName}</p> 
+  `
+};
 
-        function nextPhoto() {
-          mainDiv.innerHTML = allPhotos[counter % allPhotos.length];
-          counter += 1;
-          debugger
-        }
-        setInterval(nextPhoto, 3000);
+
+
+
+//     Photo.prototype.formatIndex = function(){
+        
+//         let workingPhoto = document.createElement("img")
+//         workingPhoto.src = this.imageUrl.attributes.image_url 
+//         document.querySelector("#main").append(workingPhoto) 
+        
+//         let counter = 0; 
+//         let mainDiv = document.getElementById('main')
+
+//         function nextPhoto() {
+//           mainDiv.innerHTML = allPhotos[counter % allPhotos.length];
+//           counter += 1;
+        
+//         }
+//         setInterval(nextPhoto, 3000);
         
     
     
-}
+// }
