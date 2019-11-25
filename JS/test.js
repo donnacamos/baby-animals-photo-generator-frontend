@@ -25,10 +25,6 @@ function fetchPhotos(){
     })
     .then(() => {
       let counter = 0
-      let playing = true;
-      let pauseButton = document.getElementById('pause');
-      let next = document.getElementById('next');
-      let previous = document.getElementById('previous'); 
       let slideInterval = setInterval(nextPhoto, 3000);
 
       function nextPhoto() {
@@ -36,16 +32,26 @@ function fetchPhotos(){
         mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render();
         counter += 1; 
       }
-    
+
+      function nextSlide() {
+        nextPhoto(allPhotos.length+1); 
+      }
+
+      function previousSlide(){
+        nextPhoto(allPhotos.length-1); 
+      }
+
+    let playing = true;
+    let pauseButton = document.getElementById('pause');
 
     function pauseSlideshow() {
-      pauseButton.innerHTML = 'Play';
+      pauseButton.innerHTML = '&#9658;';
       playing = false;
       clearInterval(slideInterval); 
     }
 
     function playSlideshow() {
-      pauseButton.innerHTML = 'Pause';
+      pauseButton.innerHTML = '&#10074;&#10074;';
       playing = true;
       slideInterval = setInterval(nextPhoto, 3000); 
     }
@@ -55,9 +61,19 @@ function fetchPhotos(){
       pauseSlideshow();
       } else {
       playSlideshow();
+      }
+    };
+
+    next.onclick = function() {
+      pauseSlideshow();
+      nextSlide();
     }
-  }; 
-});    
+
+    previous.onclick = function() {
+      pauseSlideshow();
+      previousSlide();
+    }
+  });    
 }
 
 
