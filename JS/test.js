@@ -25,13 +25,39 @@ function fetchPhotos(){
     })
     .then(() => {
       let counter = 0
+      let playing = true;
+      let pauseButton = document.getElementById('pause');
+      let next = document.getElementById('next');
+      let previous = document.getElementById('previous'); 
+      let slideInterval = setInterval(nextPhoto, 3000);
+
       function nextPhoto() {
         let mainDiv = document.getElementById('main');
         mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render();
         counter += 1; 
       }
-      setInterval(nextPhoto, 3000);
-    });
+    
+
+    function pauseSlideshow() {
+      pauseButton.innerHTML = 'Play';
+      playing = false;
+      clearInterval(slideInterval); 
+    }
+
+    function playSlideshow() {
+      pauseButton.innerHTML = 'Pause';
+      playing = true;
+      slideInterval = setInterval(nextPhoto, 3000); 
+    }
+
+    pauseButton.onclick = function() {
+      if(playing) {
+      pauseSlideshow();
+      } else {
+      playSlideshow();
+    }
+  }; 
+});    
 }
 
 
@@ -46,10 +72,11 @@ class Photo {
 
 Photo.prototype.render = function () {
   return `
-    <img src="${this.imageUrl}"/>
+    <img src="${this.imageUrl}" height="500px" width="600px" class="slide showing rounded-corners"/> 
     <p>photo credit: ${this.artistName}</p> 
   `
 };
+
 
 
 
