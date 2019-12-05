@@ -5,7 +5,7 @@
 
 class CommentsAdapter {
     constructor() {
-        this.baseUrl = 'http://localhost:3001/api/v1/comments'
+        this.baseUrl = 'http://localhost:3001/api/v1/comments' 
     }
 
     getComments() {
@@ -65,10 +65,7 @@ class Comments {
     
   
     initiBindingsAndEventListeners() {
-      this.commentsContainer = document.getElementById('comments-container')
-      this.body = document.querySelector('body')
-      this.newCommentBody = document.getElementById('new-comment-body')
-      this.commentForm = document.getElementById('new-comment-form') 
+      this.commentsContainer = document.getElementById('comments')
       this.commentForm.addEventListener('submit', this.createComment.bind(this))
       this.commentsContainer.addEventListener('dblclick', this.handleCommentClick.bind(this))
       this.body.addEventListener('blur', this.updateComment.bind(this), true)
@@ -123,13 +120,13 @@ class Comments {
     }
   }
 
-  class App {
-    constructor() {
-        this.comments = new Comments()
-    }
-}
+//   class App {
+//     constructor() {
+//         this.comments = new Comments()
+//     }
+// }
 
-const app = new App() 
+// const app = new App() 
 
 
 
