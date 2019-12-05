@@ -32,7 +32,8 @@ function fetchPhotos(){
 
       function slidePhoto() {
         let mainDiv = document.getElementById('main');
-        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render(); 
+        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render();
+        allPhotos[counter % allPhotos.length].showComments();  
        // let comments = document.getElementById('comments').render(); 
         // define the div you want to attach the comments to 
         counter += 1;
@@ -110,9 +111,13 @@ class Photo {
         this.id = id;
         this.photoWithComments = photoWithComments; 
     }
-      this.photoWithComments.forEach(comment => 
-        
-        )
+        showComments () {
+          this.photoWithComments.forEach(comment => {
+             let listComment = document.createElement("li")
+             listComment.innerText = comment.body
+             document.getElementById("comments").appendChild(listComment)  
+          })
+       }
       
       // iterate comments here 
 }
@@ -126,7 +131,7 @@ Photo.prototype.render = function () {
       <input type="text" name="comment-body" id="new-comment-body">
       <input type="submit" value="Submit">
     </form>
-    <p id="comments"></p> 
+    <ul id="comments"></ul> 
   `
 };
 
