@@ -15,63 +15,23 @@ h1 {
 img.rounded-corners {
   border-radius: 30px; 
 }
-/* 
-#slides {
-  position: relative;
-  height: 300px;
-  padding: 0px;
-  margin: 0px;
-  list-style-type: none;
+
+/* #main {
+  position: relative; 
 }
 
 .slide {
   position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
+  top: 0; bottom: 0; left: 0; right: 0;
   opacity: 0;
-  z-index: 1;
-
-  -webkit-transition: opacity 1s;
-  -moz-transition: opacity 1s;
-  -o-transition: opacity 1s;
-  transition: opacity 1s;
+  transition: opacity 400ms ease-out; 
 }
 
-.showing {
+.showing{
   opacity: 1;
-  z-index: 2;
 } */
 
-/* .slide {
-  background: url(${this.image}) no-repeat center; 
-  animation:fade 8s infinite;
-  -webkit-animation:fade 8s infinite;
-} */
 
-/* @keyframes slide {
-  0% {
-  opacity:1;
-}
-45% {
-opacity:1;
-}
-55% {
-opacity:0;
-}
-100% {
-opacity:0;
-}
-}
-
-#slide {
-  animation-name: slide;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 10s;
-  animation-direction: alternate;
-  } */
 
 .name {
   font-family: Arial;
