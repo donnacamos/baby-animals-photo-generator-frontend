@@ -1,6 +1,5 @@
 // global variable declarations 
-let allPhotos = [];
-let allComments = []; 
+let allPhotos = []; 
 // wait for the DOM to load 
 document.addEventListener("DOMContentLoaded", init);
   
@@ -115,24 +114,22 @@ class Photo {
           this.photoWithComments.forEach(comment => {
              let listComment = document.createElement("li")
              listComment.innerText = comment.body
-             document.getElementById("comments").appendChild(listComment)  
+             document.getElementById("comments-container").appendChild(listComment)  
           })
        }
       
-      // iterate comments here 
 }
 
 Photo.prototype.render = function () { 
   return `
     <img src="${this.imageUrl}" height="500px" width="600px" class="slide showing rounded-corners"/> 
     <p>photo credit: ${this.artistName}</p> 
-    <p>Leave a comment</p> 
-    <form id="new-comment-form">
-      <input type="text" name="comment-body" id="new-comment-body">
-      <input type="submit" value="Submit">
-    </form>
-    <ul id="comments"></ul> 
-  `
+    <p>Comments</p> 
+    <ul id="comments-container">
+
+    </ul>
+    `
+  
 };
 
 
