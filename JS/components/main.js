@@ -31,7 +31,7 @@ function fetchPhotos(){
 
       function slidePhoto() {
         let mainDiv = document.getElementById('main');
-        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].render();
+        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].renderCard(); 
         allPhotos[counter % allPhotos.length].showComments();  
        // let comments = document.getElementById('comments').render(); 
         // define the div you want to attach the comments to 
@@ -44,7 +44,7 @@ function fetchPhotos(){
         let url = mainDiv.children[0].src;
         let find = allPhotos.find(photo => photo.imageUrl == url);
         let index = allPhotos.indexOf(find);
-        mainDiv.innerHTML = allPhotos[index+1].render();  
+        mainDiv.innerHTML = allPhotos[index+1].renderCard();  
       }
 
       function previousPhoto() {
@@ -52,7 +52,7 @@ function fetchPhotos(){
         let url = mainDiv.children[0].src;
         let find = allPhotos.find(photo => photo.imageUrl == url);
         let index = allPhotos.indexOf(find);
-        mainDiv.innerHTML = allPhotos[index-1].render();
+        mainDiv.innerHTML = allPhotos[index-1].renderCard();
          
       }
 
@@ -108,7 +108,8 @@ class Photo {
         this.imageUrl = imageUrl; 
         this.artistName = artistName;
         this.id = id;
-        this.photoWithComments = photoWithComments; 
+        this.photoWithComments = photoWithComments;
+        
     }
         showComments () {
           this.photoWithComments.forEach(comment => {
@@ -117,20 +118,20 @@ class Photo {
              document.getElementById("comments-container").appendChild(listComment)  
           })
        }
-      
-}
 
-Photo.prototype.render = function () { 
+ renderCard() { 
   return `
     <img src="${this.imageUrl}" height="500px" width="600px" class="slide showing rounded-corners"/> 
     <p>photo credit: ${this.artistName}</p> 
-    <p>Comments</p> 
     <ul id="comments-container">
-
+  
     </ul>
+        
     `
   
-};
+}
+
+}
 
 
 

@@ -5,9 +5,11 @@ class Comment {
       
     }
 
-    renderCard() {
-      return `<p>${this.body}</p>`
+    renderLi() {
+      return `<li data-id=${this.id}>${this.body}</li>` 
     }
+
+
 }
 
 

@@ -17,7 +17,7 @@ class CommentsAdapter {
     }
   
   //This creates a constant to be passed through the POST request
-    createComments(body) {
+    createComment(body) {
       const commentData = {
         body: body 
       }
