@@ -19,7 +19,9 @@ function fetchPhotos(){
         photoJSON.data.forEach(photo => {  
           const attributes = photo.attributes;
           let newPhoto = new Photo(attributes.image_url, attributes.artist_name, photo.id, attributes.photo_with_comments);
-          allPhotos.push(newPhoto);
+          allPhotos.push(newPhoto); 
+
+
         })
     })
     .then(() => {
@@ -31,10 +33,8 @@ function fetchPhotos(){
 
       function slidePhoto() {
         let mainDiv = document.getElementById('main');
-        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].renderCard(); 
+        mainDiv.innerHTML = allPhotos[counter % allPhotos.length].renderData();  
         allPhotos[counter % allPhotos.length].showComments();  
-       // let comments = document.getElementById('comments').render(); 
-        // define the div you want to attach the comments to 
         counter += 1;
       }
       
@@ -44,7 +44,7 @@ function fetchPhotos(){
         let url = mainDiv.children[0].src;
         let find = allPhotos.find(photo => photo.imageUrl == url);
         let index = allPhotos.indexOf(find);
-        mainDiv.innerHTML = allPhotos[index+1].renderCard();  
+        mainDiv.innerHTML = allPhotos[index+1].renderData();  
       }
 
       function previousPhoto() {
@@ -52,7 +52,7 @@ function fetchPhotos(){
         let url = mainDiv.children[0].src;
         let find = allPhotos.find(photo => photo.imageUrl == url);
         let index = allPhotos.indexOf(find);
-        mainDiv.innerHTML = allPhotos[index-1].renderCard();
+        mainDiv.innerHTML = allPhotos[index-1].renderData();
          
       }
 
@@ -108,25 +108,25 @@ class Photo {
         this.imageUrl = imageUrl; 
         this.artistName = artistName;
         this.id = id;
-        this.photoWithComments = photoWithComments;
+        this.photoWithComments = photoWithComments; 
         
     }
         showComments () {
+ 
           this.photoWithComments.forEach(comment => {
+             this.photoWithComments.push(new Comment(comment)) 
              let listComment = document.createElement("li")
              listComment.innerText = comment.body
              document.getElementById("comments-container").appendChild(listComment)  
           })
-       }
+      }
 
- renderCard() { 
+ renderData() { 
   return `
     <img src="${this.imageUrl}" height="500px" width="600px" class="slide showing rounded-corners"/> 
     <p>photo credit: ${this.artistName}</p> 
-    <ul id="comments-container">
-  
+    <ul id="comments-container" >  
     </ul>
-        
     `
   
 }
