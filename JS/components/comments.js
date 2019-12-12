@@ -8,18 +8,18 @@ class Comments {
   }
 
   initBindingsAndEventListeners() {
-    this.commentsContainer = document.getElementById('comments-container')
+    this.commentsContainer = document.getElementById('comments-container')  
     this.body = document.querySelector('body')
     this.newCommentBody = document.getElementById('new-comment-body')
     this.commentForm = document.getElementById('new-comment-form')
-    this.commentForm.addEventListener('submit', this.createComment.bind(this))
+    this.commentForm.addEventListener('submit', this.createComment.bind(this)) 
     this.commentsContainer.addEventListener('dblclick', this.handleCommentClick.bind(this))
   }
 
   createComment(e) {
     e.preventDefault()
-    const value = this.newCommentBody.value
-    const photoId = this.commentsContainer.dataset.id 
+    const value = this.newCommentBody.value  
+    const photoId = this.commentsContainer.dataset.id    
     
     this.adapter.createComment(value, photoId).then(comment => {
       if(comment.error) {
@@ -28,7 +28,7 @@ class Comments {
       
       this.comments.push(new Comment(comment))
       this.newCommentBody.value = ''
-      this.commentsContainer.dataset.id = '' 
+      // this.commentsContainer.dataset.id = ''  
       this.render()
       }
     })
@@ -58,7 +58,7 @@ class Comments {
   }
 
   render() {
-    this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderData()).join('')  
+    this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderLi()).join('')  
   } 
 }
 

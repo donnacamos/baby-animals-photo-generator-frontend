@@ -117,7 +117,7 @@ class Photo {
              this.photoWithComments.push(new Comment(comment)) 
              let listComment = document.createElement("li")
              listComment.innerText = comment.body
-             document.getElementById("comments-container").appendChild(listComment)  
+             document.getElementById("comments").appendChild(listComment)  
           })
       }
 
@@ -125,7 +125,7 @@ class Photo {
   return `
     <img src="${this.imageUrl}" height="500px" width="600px" class="slide showing rounded-corners"/> 
     <p>photo credit: ${this.artistName}</p> 
-    <ul id="comments-container" >  
+    <ul id="comments" data-id=${this.id}>   
     </ul>
     `
   

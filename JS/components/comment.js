@@ -5,7 +5,7 @@ class Comment {
   }
 
   renderLi() {
-  //  return `<li data-id=${this.id}>${this.body}<li>` 
+    // return `<li data-id=${this.photo_id}>${this.body}<li>` 
   }
 }
 

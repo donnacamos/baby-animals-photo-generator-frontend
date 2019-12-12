@@ -17,9 +17,9 @@ class CommentsAdapter {
       const commentData = {
         body: body, 
         photo_id: photoId 
-      }
+      } 
       console.log("commentData", commentData ) 
-  
+     
       return fetch(this.baseUrl, {
         method: 'POST',
         headers: {
