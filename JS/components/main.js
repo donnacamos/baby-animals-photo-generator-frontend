@@ -120,12 +120,13 @@ class Photo {
              document.getElementById("comments").appendChild(listComment)  
           })
       }
-
+ 
  renderData() { 
+   console.log(this.id) 
   return `
     <img src="${this.imageUrl}" height="500px" width="600px" class="slide showing rounded-corners"/> 
     <p>photo credit: ${this.artistName}</p> 
-    <ul id="comments" data-id=${this.id}>   
+    <ul id="comments" data-id=${this.id}>  
     </ul>
     `
   

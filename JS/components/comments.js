@@ -19,7 +19,7 @@ class Comments {
   createComment(e) {
     e.preventDefault()
     const value = this.newCommentBody.value  
-    const photoId = this.commentsContainer.dataset.id    
+    const photoId = document.getElementById('comments').dataset.id       
     
     this.adapter.createComment(value, photoId).then(comment => {
       if(comment.error) {
@@ -28,7 +28,7 @@ class Comments {
       
       this.comments.push(new Comment(comment))
       this.newCommentBody.value = ''
-      // this.commentsContainer.dataset.id = ''  
+      document.getElementById('comments').dataset.id = ''   
       this.render()
       }
     })
@@ -58,7 +58,7 @@ class Comments {
   }
 
   render() {
-    this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderLi()).join('')  
+    this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderLi())  
   } 
 }
 
