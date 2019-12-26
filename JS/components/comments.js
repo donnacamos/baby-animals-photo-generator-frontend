@@ -14,13 +14,23 @@ class Comments {
     this.commentForm = document.getElementById('new-comment-form')
     this.commentForm.addEventListener('submit', this.createComment.bind(this)) 
     this.commentsContainer.addEventListener('dblclick', this.handleCommentClick.bind(this))
+    this.sortButton = document.getElementById('sort-button') 
+    this.sortButton.addEventListener('click', this.sortComments.bind(this))   
   }
+
+   
+
+  sortComments() { 
+    this.photoWithComments.sort((a, b) => (a.body < b.body) ? 1 : -1) 
+    console.log("comments"); 
+  }
+
 
   createComment(e) {
     e.preventDefault()
     const value = this.newCommentBody.value  
     const photoId = document.getElementById('comments').dataset.id       
-    
+   
     this.adapter.createComment(value, photoId).then(comment => {
       if(comment.error) {
         alert(comment.error)  
