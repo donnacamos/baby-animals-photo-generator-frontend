@@ -1,18 +1,22 @@
-
+// created a class function, everything in this file is a result of this function 
 class Comments {
   constructor() {
+    // the array holds all the comments
     this.comments = []
+    // this creates a new CommentsAdapter() 
     this.adapter = new CommentsAdapter()
+    // calling the function to "grab" all the events 
     this.initBindingsAndEventListeners()
+    // fetching the comments from the db and rendering them onto the browser 
     this.fetchAndLoadComments()
   }
 
   initBindingsAndEventListeners() {
     this.commentsContainer = document.getElementById('comments-container')  
-    this.body = document.querySelector('body')
+    this.body = document.querySelector('body') 
     this.newCommentBody = document.getElementById('new-comment-body')
     this.commentForm = document.getElementById('new-comment-form')
-    this.commentForm.addEventListener('submit', this.createComment.bind(this)) 
+    this.commentForm.addEventListener('submit', this.createComment.bind(this))  
     this.commentsContainer.addEventListener('dblclick', this.handleCommentClick.bind(this))
     this.sortButton = document.getElementById('sort-button') 
     this.sortButton.addEventListener('click', this.sortComments.bind(this))   
@@ -37,8 +41,7 @@ class Comments {
       } else {
       
       this.comments.push(new Comment(comment))
-      this.newCommentBody.value = ''
-      document.getElementById('comments').dataset.id = ''   
+      this.newCommentBody.value = ''  
       this.render()
       }
     })
@@ -63,12 +66,14 @@ class Comments {
         comments.forEach(comment => this.comments.push(new Comment(comment)))
       })
       .then(() => {
-        this.render()
+        this.render(photoId) 
       })
   }
 
-  render() {
-    this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderLi())  
+  render(photoId) {
+    const photoComments = this.comments.filter(comment => comment.photo_id === parseInt(photoId))
+    document.getElementById('comments').innerHTML = photoComments.map(comment => comment.renderLi())
+    // this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderLi())  
   } 
 }
 

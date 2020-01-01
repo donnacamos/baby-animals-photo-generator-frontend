@@ -129,6 +129,7 @@ class Photo {
     <ul id="comments" data-id=${this.id}>  
     </ul>
     `
+    
   
 }
 
