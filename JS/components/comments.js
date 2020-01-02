@@ -25,8 +25,31 @@ class Comments {
    
 
   sortComments() { 
-    this.photoWithComments.sort((a, b) => (a.body < b.body) ? 1 : -1) 
-    console.log("comments"); 
+    fetch('http://localhost:3001/api/v1/comments')
+    .then(res => res.json()) 
+    .then(comments => {
+      comments.sort(function(a, b) {
+        let bodyA = a.body.toUpperCase(); // ignore upper and lowercase
+        let bodyB = b.body.toUpperCase(); // ignore upper and lowercase
+        if (bodyA < bodyB) {
+          return -1;
+        }
+        if (bodyA > bodyB) {
+          return 1;
+        }
+      
+        // names must be equal
+        return 0;
+      });
+      document.getElementById("comments-container") 
+      let ul = document.createElement("ul") 
+      comments.forEach(comment => {
+        // this ul needs to attach all the comment's body attributes to an "li" and append them to the DOM 
+        comment.body
+      })
+      console.log(comments) 
+    })
+    console.log('clicked');  
   }
 
 
@@ -73,8 +96,7 @@ class Comments {
 
   render(photoId) {
     const photoComments = this.comments.filter(comment => comment.photo_id === parseInt(photoId))
-    document.getElementById('comments').innerHTML = photoComments.map(comment => comment.renderLi())
-    // this.commentsContainer.innerHTML = this.comments.map(comment => comment.renderLi())  
+    document.getElementById('comments').innerHTML = photoComments.map(comment => comment.renderLi()) 
   } 
 }
 
