@@ -32,7 +32,7 @@ class Comments {
 
   createComment(e) {
     e.preventDefault()
-    const value = this.newCommentBody.value  
+    const value = this.newCommentBody.value   
     const photoId = document.getElementById('comments').dataset.id       
    
     this.adapter.createComment(value, photoId).then(comment => {
@@ -42,7 +42,7 @@ class Comments {
       
       this.comments.push(new Comment(comment))
       this.newCommentBody.value = ''  
-      this.render()
+      this.render(photoId)
       }
     })
   }
@@ -65,7 +65,8 @@ class Comments {
       .then(comments => {
         comments.forEach(comment => this.comments.push(new Comment(comment)))
       })
-      .then(() => {
+      .then(() => { 
+        const photoId = document.getElementById('comments').dataset.id  
         this.render(photoId) 
       })
   }
