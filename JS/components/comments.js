@@ -41,15 +41,18 @@ class Comments {
         // names must be equal
         return 0;
       });
-      document.getElementById("comments-container") 
-      let ul = document.createElement("ul") 
+     // document.getElementById("comments-container") 
+     // let ul = document.createElement("ul") 
       comments.forEach(comment => {
         // this ul needs to attach all the comment's body attributes to an "li" and append them to the DOM 
-        comment.body
+        let li = document.createElement("li") 
+        document.getElementById("new-comment-body")
+        let body = this.newCommentBody.value
+        li.innerText = comment.body   
+        document.getElementById("comments-container").appendChild(li)
+
       })
-      console.log(comments) 
-    })
-    console.log('clicked');  
+    })  
   }
 
 
